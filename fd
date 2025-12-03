@@ -5,7 +5,7 @@
     {
       "definition": {
         "type": "note",
-        "content": "# 🎯 Request Processing Dashboard\n**Service:** frmWService | **Status:** Live Monitoring",
+        "content": "# 🎯 Request Processing Dashboard\n**Service:** frmWService | **Status:** Live Monitoring\n\n💡 *Tip: Click on Request ID dropdown and type to search*",
         "background_color": "purple",
         "font_size": "14",
         "text_align": "center",
@@ -23,8 +23,8 @@
     {
       "definition": {
         "type": "note",
-        "content": "## 🔴 Failed Requests (Requires Attention)",
-        "background_color": "red",
+        "content": "## 📜 Request Logs",
+        "background_color": "blue",
         "font_size": "14",
         "text_align": "left",
         "vertical_align": "center",
@@ -40,55 +40,7 @@
     },
     {
       "definition": {
-        "title": "🔴 Failed Request Logs",
-        "title_size": "16",
-        "title_align": "left",
-        "type": "log_stream",
-        "indexes": [],
-        "query": "service:frmWService @status:FAILED $cob_date $sub_product $adjustment_type $request_id",
-        "sort": {
-          "column": "time",
-          "order": "desc"
-        },
-        "columns": [
-          "@cob_date",
-          "@request_id",
-          "@sub_product",
-          "@adjustment_type",
-          "@status"
-        ],
-        "show_date_column": true,
-        "show_message_column": false,
-        "message_display": "inline"
-      },
-      "layout": {
-        "x": 0,
-        "y": 2,
-        "width": 12,
-        "height": 4
-      }
-    },
-    {
-      "definition": {
-        "type": "note",
-        "content": "## 📜 All Request Logs",
-        "background_color": "blue",
-        "font_size": "14",
-        "text_align": "left",
-        "vertical_align": "center",
-        "show_tick": false,
-        "has_padding": true
-      },
-      "layout": {
-        "x": 0,
-        "y": 6,
-        "width": 12,
-        "height": 1
-      }
-    },
-    {
-      "definition": {
-        "title": "📜 All Request Logs",
+        "title": "📜 Request Logs",
         "title_size": "16",
         "title_align": "left",
         "type": "log_stream",
@@ -111,9 +63,9 @@
       },
       "layout": {
         "x": 0,
-        "y": 7,
+        "y": 2,
         "width": 12,
-        "height": 5
+        "height": 8
       }
     }
   ],
@@ -121,7 +73,7 @@
     {
       "name": "cob_date",
       "prefix": "@cob_date",
-      "available_values": [],
+      "available_values": ["2024-11-14", "2024-11-15", "2024-11-16"],
       "default": "*"
     },
     {
