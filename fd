@@ -53,3 +53,157 @@ Monitoring Log   AdjustmentType: FTR  Sub-Product: DF_LOAN  Phase: Finalized  St
 
 fghfghbf
 fghfyfhfghgfdcfgghdff
+
+{
+  "title": "frmWService - Request Dashboard",
+  "description": "Main Request Processing Dashboard - Click Request ID to view phases",
+  "widgets": [
+    {
+      "definition": {
+        "type": "note",
+        "content": "# 📋 Request Processing Dashboard\n**Service:** frmWService | **Click Request ID to view Phase Details**",
+        "background_color": "purple",
+        "font_size": "16",
+        "text_align": "center",
+        "vertical_align": "center",
+        "show_tick": false,
+        "has_padding": true
+      },
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 12,
+        "height": 1
+      }
+    },
+    {
+      "definition": {
+        "title": "Request Logs (Latest First)",
+        "title_size": "16",
+        "title_align": "left",
+        "type": "log_stream",
+        "indexes": [],
+        "query": "service:frmWService $cob_date $sub_product $adjustment_type $status $request_id",
+        "sort": {
+          "column": "time",
+          "order": "desc"
+        },
+        "columns": [
+          "@cob_date",
+          "@request_id",
+          "@sub_product",
+          "@adjustment_type",
+          "@status"
+        ],
+        "show_date_column": true,
+        "show_message_column": false,
+        "message_display": "inline"
+      },
+      "layout": {
+        "x": 0,
+        "y": 1,
+        "width": 12,
+        "height": 10
+      }
+    }
+  ],
+  "template_variables": [
+    {
+      "name": "cob_date",
+      "prefix": "@cob_date",
+      "available_values": [],
+      "default": "*"
+    },
+    {
+      "name": "sub_product",
+      "prefix": "@sub_product",
+      "available_values": [],
+      "default": "*"
+    },
+    {
+      "name": "adjustment_type",
+      "prefix": "@adjustment_type",
+      "available_values": [],
+      "default": "*"
+    },
+    {
+      "name": "status",
+      "prefix": "@status",
+      "available_values": ["IN_PROGRESS", "COMPLETED", "FAILED"],
+      "default": "*"
+    },
+    {
+      "name": "request_id",
+      "prefix": "@request_id",
+      "available_values": [],
+      "default": "*"
+    }
+  ],
+  "layout_type": "ordered",
+  "notify_list": [],
+  "reflow_type": "fixed"
+}
+
+----------------------------------------------------------
+{
+  "title": "frmWService - Request Phase Details",
+  "description": "View all phases for a specific Request ID",
+  "widgets": [
+    {
+      "definition": {
+        "type": "note",
+        "content": "# 🔍 Request Phase Details\n**Service:** frmWService | **Select Request ID to view all phases**",
+        "background_color": "blue",
+        "font_size": "16",
+        "text_align": "center",
+        "vertical_align": "center",
+        "show_tick": false,
+        "has_padding": true
+      },
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 12,
+        "height": 1
+      }
+    },
+    {
+      "definition": {
+        "title": "Phase Details",
+        "title_size": "16",
+        "title_align": "left",
+        "type": "log_stream",
+        "indexes": [],
+        "query": "service:frmWService $request_id",
+        "sort": {
+          "column": "time",
+          "order": "desc"
+        },
+        "columns": [
+          "@phase",
+          "@status"
+        ],
+        "show_date_column": true,
+        "show_message_column": false,
+        "message_display": "inline"
+      },
+      "layout": {
+        "x": 0,
+        "y": 1,
+        "width": 12,
+        "height": 10
+      }
+    }
+  ],
+  "template_variables": [
+    {
+      "name": "request_id",
+      "prefix": "@request_id",
+      "available_values": [],
+      "default": "*"
+    }
+  ],
+  "layout_type": "ordered",
+  "notify_list": [],
+  "reflow_type": "fixed"
+}
